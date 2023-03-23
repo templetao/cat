@@ -1,15 +1,14 @@
-import { defineComponent, ref } from "vue";
-
+import { defineComponent } from "vue";
+import { RouterView } from "vue-router";
 export const App = defineComponent({
-  setup() {
-    const refCount = ref(0);
-    const onClick = () => {
-      refCount.value += 1;
-    };
+  setup: () => {
     return () => (
       <>
-        <div>{refCount.value}</div>
-        <div onClick={onClick}>+1</div>
+        <header>导航</header>
+        <div>
+          <RouterView />
+        </div>
+        <footer>页脚</footer>
       </>
     );
   },
