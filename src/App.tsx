@@ -1,10 +1,16 @@
 import { defineComponent, ref } from "vue";
 
-const App = defineComponent({
+export const App = defineComponent({
   setup() {
-    const count = ref(0);
-    return () => (<div>
-      {count.value}
-    </div>)
+    const refCount = ref(0);
+    const onClick = () => {
+      refCount.value += 1;
+    };
+    return () => (
+      <>
+        <div>{refCount.value}</div>
+        <div onClick={onClick}>+1</div>
+      </>
+    );
   },
 });
