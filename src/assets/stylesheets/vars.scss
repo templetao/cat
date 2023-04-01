@@ -5,9 +5,10 @@
   --welcome-bg-end: #8f4cd7;
   --welcome-nav-height: 66px;
   --welcome-nav-gap: 6px;
-  --z-index-bottom-nav: 10; 
+  --z-index-bottom-nav: 8;
+  --z-index-overlay: 16;
   --transition-duration: 0.5s;
-  --button-bg: #5c33BE;
+  --button-bg: #5c33be;
   --button-text: white;
   --button-font-size: 18px;
   --button-radius: 8px;
@@ -17,4 +18,7 @@
   --navbar-bg-start: var(--welcome-bg-start);
   --navbar-bg-end: var(--welcome-bg-end);
   --navbar-text: white;
+  --overlay-mask-bg: rgba(0, 0, 0, 0.5);
+  --overlay-bg: white;
+  --top-safe-area-height: 24px;
 }
