@@ -5,21 +5,17 @@
   }
 }
 
-.pig {
+.pig{
   width: 128px;
   height: 128px;
-  &_wrapper {
+  &_wrapper{
     padding: 120px 0;
   }
 }
 
-.navIcon {
+.navIcon{
   width: 30px;
   height: 30px;
   position: relative;
-  top: 1px;
-  > * {
-    max-width: 100%;
-    max-height: 100%;
-  }
+  top: 2px;
 }

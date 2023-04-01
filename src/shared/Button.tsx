@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue'
-import s from './Button.module.scss'
+import { defineComponent } from 'vue';
+import s from './Button.module.scss';
 
-interface Props {
+interface Props{
   onClick?: (e: MouseEvent) => void
 }
 
