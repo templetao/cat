@@ -20,3 +20,4 @@ export const time = (date = new Date()) => {
   }
   return api
 }
+
