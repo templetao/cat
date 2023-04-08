@@ -3,13 +3,14 @@ import { defineComponent, reactive, ref } from 'vue'
 import { MainLayout } from '../layouts/MainLayout'
 import { Button } from '../shared/Button'
 import { Form, FormItem } from '../shared/Form'
+import { http } from '../shared/Http'
 import { Icon } from '../shared/Icon'
 import { validate } from '../shared/validate'
 import s from './SignInPage.module.scss'
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
-      email: '',
+      email: 'pengtao6@foxmail.com',
       code: ''
     })
     const errors = reactive({
@@ -23,16 +24,19 @@ export const SignInPage = defineComponent({
         email: [], code: []
       })
       Object.assign(errors, validate(formData, [
-        { key: 'email', type: 'required', message: '必填'},
-        { key: 'email', type: 'pattern', regex: /.+@.+/, message: '必须是邮箱地址'},
-        { key: 'code', type: 'required', message: '必填'},
+        { key: 'email', type: 'required', message: '必填' },
+        { key: 'email', type: 'pattern', regex: /.+@.+/, message: '必须是邮箱地址' },
+        { key: 'code', type: 'required', message: '必填' },
       ]))
     }
+    const onError = (error: any) => {
+      if (error.response.status === 422) {
+        Object.assign(errors, error.response.data.errors)
+      }
+    }
     const onClickSendValidationCode = async () => {
-      const response = await axios.post('/api/v1/validation_codes', {email: formData.email})
-        .catch(() => {
-          // 失败
-        })
+      const response = await http.post('/validation_codes', { email: formData.email })
+        .catch(onError)
       // 成功
       refValidationCode.value.startCount()
     }
@@ -55,7 +59,7 @@ export const SignInPage = defineComponent({
                 countFrom={60}
                 onClick={onClickSendValidationCode}
                 v-model={formData.code} error={errors.code?.[0]} />
-              <FormItem style={{ paddingTop: '96px'}}>
+              <FormItem style={{ paddingTop: '96px' }}>
                 <Button>登录</Button>
               </FormItem>
             </Form>
