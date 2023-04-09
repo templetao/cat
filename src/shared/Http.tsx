@@ -29,7 +29,6 @@ export class Http {
 export const http = new Http('/api/v1')
 
 http.instance.interceptors.response.use(response => {
-  console.log('response')
   return response
 }, (error) => {
   if (error.response) {
