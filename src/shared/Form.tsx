@@ -1,5 +1,5 @@
 import { DatetimePicker, Popup } from 'vant';
-import { computed, defineComponent, PropType, ref, VNode } from 'vue';
+import { computed, defineComponent, PropType, ref } from 'vue';
 import { Button } from './Button';
 import { EmojiSelect } from './EmojiSelect';
 import s from './Form.module.scss';
@@ -41,7 +41,8 @@ export const FormItem = defineComponent({
     countFrom: {
       type: Number,
       default: 60
-    }
+    },
+    disabled: Boolean,
   },
   setup: (props, context) => {
     const refDateVisible = ref(false)
@@ -76,7 +77,7 @@ export const FormItem = defineComponent({
           return <>
             <input class={[s.formItem, s.input, s.validationCodeInput]}
               placeholder={props.placeholder} />
-            <Button disabled={isCounting.value} onClick={props.onClick} class={[s.formItem, s.button, s.validationCodeButton]}>
+            <Button disabled={isCounting.value || props.disabled} onClick={props.onClick} class={[s.formItem, s.button, s.validationCodeButton]}>
               {isCounting.value ? `${count.value}后可重新发送` : '发送验证码'}
             </Button>
           </>
