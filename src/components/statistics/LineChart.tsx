@@ -1,7 +1,6 @@
-import { defineComponent, onMounted, ref } from 'vue'
-import s from './LineChart.module.scss'
+import { defineComponent, onMounted, PropType, ref } from 'vue';
+import s from './LineChart.module.scss';
 import * as echarts from 'echarts';
-
 export const LineChart = defineComponent({
   setup: (props, context) => {
     const refDiv = ref<HTMLDivElement>()
@@ -28,6 +27,7 @@ export const LineChart = defineComponent({
           }
         ]
       });
+
     })
     return () => (
       <div ref={refDiv} class={s.wrapper}></div>

@@ -1,39 +1,34 @@
-import { defineComponent, PropType, reactive } from "vue";
-import { Button } from "../../shared/Button";
-import { EmojiSelect } from "../../shared/EmojiSelect";
-import { Form, FormItem } from "../../shared/Form";
-import { Rules, validate } from "../../shared/validate";
-import s from "./Tag.module.scss";
+import { defineComponent, PropType, reactive, toRaw } from 'vue';
+import { Button } from '../../shared/Button';
+import { EmojiSelect } from '../../shared/EmojiSelect';
+import { Form, FormItem } from '../../shared/Form';
+import { Rules, validate } from '../../shared/validate';
+import s from './Tag.module.scss';
 export const TagForm = defineComponent({
   props: {
     name: {
-      type: String as PropType<string>,
-    },
+      type: String as PropType<string>
+    }
   },
   setup: (props, context) => {
     const formData = reactive({
-      name: "",
-      sign: "",
-    });
-    const errors = reactive<{ [k in keyof typeof formData]?: string[] }>({});
+      name: '',
+      sign: '',
+    })
+    const errors = reactive<{ [k in keyof typeof formData]?: string[] }>({})
     const onSubmit = (e: Event) => {
       const rules: Rules<typeof formData> = [
-        { key: "name", type: "required", message: "必填" },
-        {
-          key: "name",
-          type: "pattern",
-          regex: /^.{1,4}$/,
-          message: "只能填 1 到 4 个字符",
-        },
-        { key: "sign", type: "required", message: "必填" },
-      ];
+        { key: 'name', type: 'required', message: '必填' },
+        { key: 'name', type: 'pattern', regex: /^.{1,4}$/, message: '只能填 1 到 4 个字符' },
+        { key: 'sign', type: 'required', message: '必填' },
+      ]
       Object.assign(errors, {
         name: undefined,
-        sign: undefined,
-      });
-      Object.assign(errors, validate(formData, rules));
-      e.preventDefault();
-    };
+        sign: undefined
+      })
+      Object.assign(errors, validate(formData, rules))
+      e.preventDefault()
+    }
     return () => (
       <Form onSubmit={onSubmit}>
         <FormItem label='标签名'
@@ -50,6 +45,6 @@ export const TagForm = defineComponent({
           <Button class={[s.button]}>确定</Button>
         </FormItem>
       </Form>
-    );
-  },
-});
+    )
+  }
+})

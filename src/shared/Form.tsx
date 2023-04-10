@@ -1,5 +1,5 @@
 import { DatetimePicker, Popup } from 'vant';
-import { computed, defineComponent, PropType, ref } from 'vue';
+import { computed, defineComponent, PropType, ref, VNode } from 'vue';
 import { Button } from './Button';
 import { EmojiSelect } from './EmojiSelect';
 import s from './Form.module.scss';
@@ -11,7 +11,6 @@ export const Form = defineComponent({
       type: Function as PropType<(e: Event) => void>,
     }
   },
-  emits: ['update:modelValue'],
   setup: (props, context) => {
     return () => (
       <form class={s.form} onSubmit={props.onSubmit}>
@@ -44,12 +43,13 @@ export const FormItem = defineComponent({
     },
     disabled: Boolean,
   },
+  emits: ['update:modelValue'],
   setup: (props, context) => {
     const refDateVisible = ref(false)
     const timer = ref<number>()
     const count = ref<number>(props.countFrom)
     const isCounting = computed(() => !!timer.value)
-    const startCount = () => {
+    const startCount = () =>
       timer.value = setInterval(() => {
         count.value -= 1
         if (count.value === 0) {
@@ -58,7 +58,6 @@ export const FormItem = defineComponent({
           count.value = props.countFrom
         }
       }, 1000)
-    }
     context.expose({ startCount })
     const content = computed(() => {
       switch (props.type) {
@@ -80,14 +79,15 @@ export const FormItem = defineComponent({
               onInput={(e: any) => context.emit('update:modelValue', e.target.value)}
               placeholder={props.placeholder} />
             <Button disabled={isCounting.value || props.disabled} onClick={props.onClick} class={[s.formItem, s.button, s.validationCodeButton]}>
-              {isCounting.value ? `${count.value}后可重新发送` : '发送验证码'}
+              {isCounting.value ? `${count.value}秒后可重新发送` : '发送验证码'}
             </Button>
           </>
         case 'select':
           return <select class={[s.formItem, s.select]} value={props.modelValue}
             onChange={(e: any) => { context.emit('update:modelValue', e.target.value) }}>
             {props.options?.map(option =>
-              <option value={option.value}>{option.text}</option>)}
+              <option value={option.value}>{option.text}</option>
+            )}
           </select>
         case 'date':
           return <>
@@ -102,8 +102,7 @@ export const FormItem = defineComponent({
                   refDateVisible.value = false
                 }}
                 onCancel={() => refDateVisible.value = false} />
-            </Popup>
-          </>
+            </Popup></>
         case undefined:
           return context.slots.default?.()
       }

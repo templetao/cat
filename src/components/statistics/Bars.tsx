@@ -1,6 +1,11 @@
-import { computed, defineComponent, reactive } from 'vue'
-import s from './Bar.module.scss'
-export const Bar = defineComponent({
+import { computed, defineComponent, PropType, reactive } from 'vue';
+import s from './Bars.module.scss';
+export const Bars = defineComponent({
+  props: {
+    name: {
+      type: String as PropType<string>
+    }
+  },
   setup: (props, context) => {
     const data3 = reactive([
       { tag: { id: 1, name: '房租', sign: 'x' }, amount: 3000 },

@@ -30,13 +30,13 @@ export const Overlay = defineComponent({
             </li>
             <li>
               <RouterLink to="/export" class={s.action}>
-                <Icon name="export" class={s.icon}/>
+                <Icon name="export" class={s.icon} />
                 <span>导出数据</span>
               </RouterLink>
             </li>
             <li>
               <RouterLink to="/notify" class={s.action}>
-                <Icon name="notify" class={s.icon}/>
+                <Icon name="notify" class={s.icon} />
                 <span>记账提醒</span>
               </RouterLink>
             </li>
@@ -46,6 +46,7 @@ export const Overlay = defineComponent({
     </>
   }
 })
+
 
 export const OverlayIcon = defineComponent({
   setup: (props, context) => {

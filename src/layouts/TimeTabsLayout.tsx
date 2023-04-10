@@ -1,5 +1,6 @@
 import { Overlay } from 'vant';
-import { defineComponent, PropType, reactive, ref } from 'vue';
+import { Component, DefineComponent, defineComponent, PropType, reactive, ref } from 'vue';
+import { ItemSummary } from '../components/item/ItemSummary';
 import { Form, FormItem } from '../shared/Form';
 import { OverlayIcon } from '../shared/Overlay';
 import { Tab, Tabs } from '../shared/Tabs';
