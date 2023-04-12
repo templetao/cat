@@ -16,18 +16,17 @@ type Tag = {
   sign: string,
   kind: expenses | income
 }
-
 type Item = {
-  id: number,
-  user_id: number,
-  amount: number,
-  tag_id: number,
-  happen_at: string,
-  kind: expenses | income,
+  id: number
+  user_id: number
+  amount: number
+  tags_id: number[]
+  happen_at: string
+  kind: expenses | income
 }
 
 type Resources<T = any> = {
-  resources: T[],
+  resources: T[]
   pager: {
     page: number,
     per_page: number,

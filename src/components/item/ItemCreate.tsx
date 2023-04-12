@@ -1,11 +1,13 @@
 import { AxiosError } from 'axios';
 import { Dialog } from 'vant';
-import { defineComponent, PropType, reactive, ref } from 'vue';
+import { defineComponent, onMounted, PropType, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { MainLayout } from '../../layouts/MainLayout';
+import { Button } from '../../shared/Button';
 import { http } from '../../shared/Http';
 import { Icon } from '../../shared/Icon';
 import { Tabs, Tab } from '../../shared/Tabs';
+import { useTags } from '../../shared/useTags';
 import { InputPad } from './InputPad';
 import s from './ItemCreate.module.scss';
 import { Tags } from './Tags';
@@ -45,16 +47,16 @@ export const ItemCreate = defineComponent({
         default: () => <>
           <div class={s.wrapper}>
             <Tabs v-model:selected={formData.kind} class={s.tabs}>
-              <Tab name="支出" >
-                {formData.amount}
-                <Tags kind='expenses' v-model:selected={formData.tags_id[0]} />
+              <Tab name="支出">
+                <Tags kind="expenses" v-model:selected={formData.tags_id[0]} />
               </Tab>
-              <Tab name="收入" >
-                <Tags kind='income' v-model:selected={formData.tags_id[0]} />
+              <Tab name="收入">
+                <Tags kind="income" v-model:selected={formData.tags_id[0]} />
               </Tab>
             </Tabs>
             <div class={s.inputPad_wrapper}>
-              <InputPad v-model:happenAt={formData.happen_at}
+              <InputPad
+                v-model:happenAt={formData.happen_at}
                 v-model:amount={formData.amount}
                 onSubmit={onSubmit} />
             </div>

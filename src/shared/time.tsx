@@ -1,4 +1,4 @@
-/* 
+/*
   example
   import { Time } from 'shared/time';
   const time = new Time();
@@ -13,11 +13,11 @@ export class Time {
   date: Date;
   constructor(date?: string | Date) {
     if (date === undefined) {
-      this.date = new Date()
+      this.date = new Date();
     } else if (typeof date === 'string') {
-      this.date = new Date(date)
+      this.date = new Date(date);
     } else {
-      this.date = date;
+      this.date = date
     }
   }
   format(pattern = 'YYYY-MM-DD') {

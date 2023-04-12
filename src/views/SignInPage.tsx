@@ -1,9 +1,11 @@
-import { defineComponent, reactive, ref } from 'vue';
+import axios, { AxiosResponse } from 'axios';
+import { defineComponent, PropType, reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useBool } from '../hooks/useBool';
 import { MainLayout } from '../layouts/MainLayout';
 import { Button } from '../shared/Button';
 import { Form, FormItem } from '../shared/Form';
+import { history } from '../shared/history';
 import { http } from '../shared/Http';
 import { Icon } from '../shared/Icon';
 import { refreshMe } from '../shared/me';
@@ -36,6 +38,7 @@ export const SignInPage = defineComponent({
       if (!hasError(errors)) {
         const response = await http.post<{ jwt: string }>('/session', formData)
           .catch(onError)
+        console.log(response)
         localStorage.setItem('jwt', response.data.jwt)
         // router.push('/sign_in?return_to='+ encodeURIComponent(route.fullPath))
         const returnTo = route.query.return_to?.toString()
