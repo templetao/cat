@@ -1,16 +1,15 @@
 import { AxiosError } from 'axios';
 import { Dialog } from 'vant';
-import { defineComponent, onMounted, PropType, reactive, ref } from 'vue';
+import { defineComponent, PropType, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { MainLayout } from '../../layouts/MainLayout';
-import { Button } from '../../shared/Button';
 import { http } from '../../shared/Http';
-import { Icon } from '../../shared/Icon';
 import { Tabs, Tab } from '../../shared/Tabs';
-import { useTags } from '../../shared/useTags';
 import { InputPad } from './InputPad';
 import s from './ItemCreate.module.scss';
 import { Tags } from './Tags';
+import { backIcon } from '../../shared/backIcon';
+
 export const ItemCreate = defineComponent({
   props: {
     name: {
@@ -43,7 +42,7 @@ export const ItemCreate = defineComponent({
     return () => (
       <MainLayout class={s.layout}>{{
         title: () => '记一笔',
-        icon: () => <Icon name="left" class={s.navIcon} />,
+        icon: () => <backIcon />,
         default: () => <>
           <div class={s.wrapper}>
             <Tabs v-model:selected={formData.kind} class={s.tabs}>
