@@ -24,6 +24,7 @@ export const ItemCreate = defineComponent({
           <div class={s.wrapper}>
             <Tabs v-model:selected={refKind.value} class={s.tabs}>
               <Tab name="支出" >
+                <div>{refAmount.value}</div>
                 <Tags kind='expenses' v-model:selected={refTagId.value} />
               </Tab>
               <Tab name="收入" >
