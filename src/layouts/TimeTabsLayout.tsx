@@ -29,6 +29,10 @@ export const TimeTabsLayout = defineComponent({
   setup: (props, context) => {
     const refSelected = ref('本月')
     const time = new Time()
+    const tempTime = reactive({
+      start: new Time().format(),
+      end: new Time().format(),
+    })
     const customTime = reactive<{
       start?: string,
       end?: string
@@ -51,6 +55,7 @@ export const TimeTabsLayout = defineComponent({
     const onSubmitCustomTime = (e: Event) => {
       e.preventDefault()
       refOverlayVisible.value = false
+      Object.assign(customTime, tempTime)
     }
     const onSelect = (value: string) => {
       if (value === '自定义时间') {
@@ -82,8 +87,8 @@ export const TimeTabsLayout = defineComponent({
               </Tab>
               <Tab name="自定义时间">
                 <props.component
-                  startDate={customTime.start}
-                  endDate={customTime.end} />
+                  startDate={tempTime.start}
+                  endDate={tempTime.end} />
               </Tab>
             </Tabs>
             <Overlay show={refOverlayVisible.value} class={s.overlay} >
