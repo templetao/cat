@@ -1,7 +1,6 @@
-import { defineComponent, onMounted, PropType, reactive, toRaw } from 'vue';
+import { defineComponent, onMounted, reactive } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Button } from '../../shared/Button';
-import { EmojiSelect } from '../../shared/EmojiSelect';
 import { Form, FormItem } from '../../shared/Form';
 import { http } from '../../shared/Http';
 import { onFormError } from '../../shared/onFormError';
@@ -17,7 +16,7 @@ export const TagForm = defineComponent({
       id: undefined,
       name: '',
       sign: '',
-      kind: route.query.kind!.toString(),
+      kind: route.query.kind!.toString() as ('expenses' | 'income'),
     })
     const errors = reactive<{ [k in keyof typeof formData]?: string[] }>({})
     const router = useRouter()
