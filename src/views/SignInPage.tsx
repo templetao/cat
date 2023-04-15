@@ -1,12 +1,10 @@
-import axios, { AxiosResponse } from 'axios';
-import { defineComponent, PropType, reactive, ref } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useBool } from '../hooks/useBool';
 import { MainLayout } from '../layouts/MainLayout';
 import { BackIcon } from '../shared/BackIcon';
 import { Button } from '../shared/Button';
 import { Form, FormItem } from '../shared/Form';
-import { history } from '../shared/history';
 import { http } from '../shared/Http';
 import { Icon } from '../shared/Icon';
 import { refreshMe } from '../shared/me';
@@ -55,8 +53,10 @@ export const SignInPage = defineComponent({
     const onClickSendValidationCode = async () => {
 
       disabled()
-      const response = await http
-        .post('/validation_codes', { email: formData.email })
+      await http
+        .post('/validation_codes', { email: formData.email }, {
+          _autoLoading: true
+        })
         .catch(onError)
         .finally(enable)
       // 成功
