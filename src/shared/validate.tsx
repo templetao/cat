@@ -37,6 +37,7 @@ export const validate = <T extends FData>(formData: T, rules: Rules<T>) => {
           errors[key] = errors[key] ?? []
           errors[key]?.push(message)
         }
+        break;
       default:
         return
     }
