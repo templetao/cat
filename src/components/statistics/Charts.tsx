@@ -34,7 +34,7 @@ export const Charts = defineComponent({
       return Array.from({ length: n }).map((_, i) => {
         const time = new Time(props.startDate + 'T00:00:00.000+0800').add(i, 'day').getTimestamp()
         const item = data1.value[0]
-        const amount = item && new Date(item.happen_at).getTime() === time
+        const amount = item && new Date(item.happen_at + 'T00:00:00.000+0800').getTime() === time
           ? data1.value.shift()!.amount
           : 0
         return [new Date(time).toISOString(), amount]
@@ -48,7 +48,7 @@ export const Charts = defineComponent({
         group_by: 'happen_at',
       }, {
         _mock: 'itemSummary',
-        _autoLoading: true 
+        _autoLoading: true
       })
       data1.value = response.data.groups
     }
