@@ -31,6 +31,10 @@ type Item = {
   happen_at: string;
   kind: 'expenses' | 'income';
 };
+type User = {
+  id: number;
+  email: string;
+}
 
 type Resources<T = any> = {
   resources: T[];
@@ -49,7 +53,4 @@ type ResourceError = {
   errors: Record<string, string[]>;
 };
 
-type User = {
-  id: number,
-  email: string
-}
+type FormErrors<T> = {[K in keyof typeof T]: string[]}

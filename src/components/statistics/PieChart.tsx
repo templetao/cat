@@ -1,13 +1,12 @@
 import { defineComponent, onMounted, PropType, ref, watch } from 'vue';
 import s from './PieChart.module.scss';
 import * as echarts from 'echarts';
-import { getMoney } from '../../shared/Money';
-
+import { getMoney } from '../../shared/Money'
 const defaultOption = {
   tooltip: {
     trigger: 'item',
-    formatter: (x: { name: string, value: number, percent: number }) => {
-      const { name, value, percent } = x
+    formatter: (x: {name:string, value:number, percent: number})=>{
+      const {name,value,percent} = x
       return `${name}: ￥${getMoney(value)} 占比 ${percent}%`
     }
   },
@@ -28,11 +27,10 @@ const defaultOption = {
     }
   ]
 }
-
 export const PieChart = defineComponent({
   props: {
     data: {
-      type: Array as PropType<{ name: string, value: number }[]>
+      type: Array as PropType<{name:string, value: number}[]>
     }
   },
   setup: (props, context) => {
@@ -40,8 +38,9 @@ export const PieChart = defineComponent({
     let chart: echarts.ECharts | undefined = undefined
     onMounted(() => {
       if (refDiv2.value === undefined) { return }
-      chart = echarts.init(refDiv2.value)
-      chart.setOption(defaultOption)
+      // 基于准备好的dom，初始化echarts实例
+      chart = echarts.init(refDiv2.value);
+      chart.setOption(defaultOption);
     })
     watch(() => props.data, () => {
       chart?.setOption({

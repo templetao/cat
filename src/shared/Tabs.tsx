@@ -38,13 +38,13 @@ export const Tabs = defineComponent({
             </li>)}
         </ol>
         {props.rerenderOnSelect ?
+          <div key={props.selected}>
+            {tabs.find(item=>item.props?.value === props.selected)}
+          </div>:
           <div>
-            {tabs.find(item => item.props?.value === props.selected)}
-          </div> :
-          <div>
-            {tabs.map(item =>
-              <div v-show={item.props?.value === props.selected}>{item}</div>
-            )}
+          {tabs.map(item =>
+            <div v-show={item.props?.value === props.selected}>{item}</div>
+          )}
           </div>
         }
       </div>

@@ -53,11 +53,9 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: '/statistics', component: StatisticsPage
-  },
-  {
+  },{
     path: '/export', component: ComingSoon
-  },
-  {
+  },{
     path: '/notify', component: ComingSoon
-  },
+  }
 ]

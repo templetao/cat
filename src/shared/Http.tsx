@@ -61,21 +61,21 @@ const mock = (response: AxiosResponse) => {
   return false
 }
 
-function isDev() {
+function isDev(){
   if (location.hostname !== 'localhost'
     && location.hostname !== '127.0.0.1'
     && location.hostname !== '192.168.3.57') { return false }
   return true
 }
 
-export const http = new Http(isDev() ? 'api/v1' : 'http://121.196.236.94:3000/api/v1')
+export const http = new Http( isDev() ? 'api/v1' : 'http://121.196.236.94:3000/api/v1')
 
 http.instance.interceptors.request.use(config => {
   const jwt = localStorage.getItem('jwt')
   if (jwt) {
     config.headers!.Authorization = `Bearer ${jwt}`
   }
-  if (config._autoLoading === true) {
+  if(config._autoLoading === true){
     Toast.loading({
       message: '加载中...',
       forbidClick: true,
@@ -85,14 +85,14 @@ http.instance.interceptors.request.use(config => {
   return config
 })
 
-http.instance.interceptors.response.use((response) => {
-  if (response.config._autoLoading === true) {
-    Toast.clear()
+http.instance.interceptors.response.use((response)=>{
+  if(response.config._autoLoading === true){
+    Toast.clear();
   }
   return response
-}, (error: AxiosError) => {
-  if (error.response?.config._autoLoading === true) {
-    Toast.clear()
+}, (error: AxiosError)=>{
+  if(error.response?.config._autoLoading === true){
+    Toast.clear();
   }
   throw error
 })

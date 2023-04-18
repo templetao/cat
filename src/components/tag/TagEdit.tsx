@@ -26,7 +26,7 @@ export const TagEdit = defineComponent({
       await http
         .delete(`/tags/${numberId}`, {
           with_items: options?.withItems ? 'true' : 'false',
-        }, { _autoLoading: true })
+        }, {_autoLoading: true})
         .catch(onError)
       router.back()
     }
@@ -44,7 +44,7 @@ export const TagEdit = defineComponent({
                   class={s.removeTagsAndItems}
                   onClick={() => onDelete({ withItems: true })}
                 >
-                  删除标签(对应记账也被删除)
+                  删除标签（对应记账也会被删除）
                 </Button>
               </div>
             </>

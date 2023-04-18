@@ -39,7 +39,7 @@ export const useItemStore = (id: string | (string | undefined)[]) =>
         if (firstPage) {
           this.items = resources
         } else {
-          this.items?.push(...resources)
+          this.items.push(...resources)
         }
         this.hasMore = (pager.page - 1) * pager.per_page + resources.length < pager.count
         this.page += 1

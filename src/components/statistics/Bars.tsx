@@ -4,7 +4,7 @@ import s from './Bars.module.scss';
 export const Bars = defineComponent({
   props: {
     data: {
-      type: Array as PropType<{ tag: Tag, amount: number, percent: number }[]>
+      type: Array as PropType<{tag:Tag, amount:number, percent: number}[]>
     }
   },
   setup: (props, context) => {
@@ -20,17 +20,17 @@ export const Bars = defineComponent({
                 <div class={s.bar_wrapper}>
                   <div class={s.bar_text}>
                     <span> {tag.name} - {percent}% </span>
-                    <span> ￥<Money value={amount} /> </span>
+                    <span> ￥<Money value={amount}/> </span>
                   </div>
                   <div class={s.bar}>
-                    <div class={s.bar_inner} style={{ width: `${percent}%` }}></div>
+                    <div class={s.bar_inner} style={{width: `${percent}%`}}></div>
                   </div>
                 </div>
               </div>
             )
-          }) : <div>没有数据</div>
+          }): <div>没有数据</div>
         }
-      </div>
+        </div>
     )
   }
 })
