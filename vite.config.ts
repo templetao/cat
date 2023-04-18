@@ -33,6 +33,7 @@ export default defineConfig(({ command }) => {
         }
       }
     },
+    base: '/cat/dist/',
     plugins: [
       vue(),
       vueJsx({
